@@ -62,4 +62,46 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('section').forEach(section => {
     observer.observe(section);
-}); 
+});
+
+// Typing Animation
+function initTypeEffect() {
+    const typingText = document.querySelector('.dynamic-text');
+    const words = ['Software Engineer', 'Java Developer', 'Spring Boot Expert'];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+        const currentWord = words[wordIndex];
+        
+        if (isDeleting) {
+            typingText.textContent = currentWord.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            typingText.textContent = currentWord.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        // Typing speed control
+        let typeSpeed = isDeleting ? 50 : 150;
+        
+        // If word is complete
+        if (!isDeleting && charIndex === currentWord.length) {
+            typeSpeed = 2000; // Pause at the end
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            typeSpeed = 500; // Pause before typing next word
+        }
+
+        setTimeout(typeEffect, typeSpeed);
+    }
+
+    // Start the animation
+    typeEffect();
+}
+
+// Start the typing animation when the page loads
+document.addEventListener('DOMContentLoaded', initTypeEffect); 

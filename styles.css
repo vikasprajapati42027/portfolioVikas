@@ -598,63 +598,46 @@ section {
     }
 }
 
-.typing-wrapper {
-    display: inline-flex;
+/* Update the typing animation styles */
+.intro-text {
+    margin-bottom: 30px;
+}
+
+.greeting {
+    font-size: 1.5em;
+    color: #666;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.typing-effect {
+    display: flex;
     align-items: center;
-    height: 50px;
-    padding: 0;
-    overflow: hidden;
+    font-size: 2em;
+    margin: 1rem 0;
 }
 
 .static-text {
-    color: #343a40;
-    font-size: 1.8em;
-    font-weight: 400;
+    margin-right: 8px;
+    color: #333;
 }
 
-.dynamic-texts {
-    margin-left: 15px;
-    height: 50px;
-    line-height: 50px;
-    overflow: hidden;
-}
-
-.dynamic-texts li {
-    list-style: none;
+.dynamic-text {
     color: #007bff;
-    font-size: 1.8em;
-    font-weight: 600;
     position: relative;
-    top: 0;
-    animation: slide 12s steps(3) infinite;
+    font-weight: 500;
+    min-width: 250px;
 }
 
-.dynamic-texts li span {
-    position: relative;
-}
-
-.dynamic-texts li span::after {
-    content: "";
+.dynamic-text::after {
+    content: "|";
     position: absolute;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: #fff;
-    border-left: 2px solid #007bff;
-    animation: typing 4s steps(20) infinite;
+    right: -8px;
+    color: #007bff;
+    animation: blink 0.7s infinite;
 }
 
-@keyframes slide {
-    100% {
-        top: -150px;
-    }
-}
-
-@keyframes typing {
-    40%, 60% {
-        left: calc(100% + 30px);
-    }
-    100% {
-        left: 0;
-    }
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 } 
